@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<style>
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  font-family: '-apple-system', sans-serif;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  perspective: 100vw;
+  -webkit-text-smoothing: anti-aliased;
+}
+
+digit {
+  position: relative;
+  width: 7vw;
+  height: 11vw;
+  margin: 0 0.25vw;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Flip Flaps
+------------------------------------------------*/
+flap-top,
+flap-top-flip,
+flap-bottom,
+flap-bottom-flip {
+  box-sizing: border-box;
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 50%;
+  left: 0;
+  justify-content: center;
+  overflow: hidden;
+  color: #e1e1e1;
+  background-color: rgb(12,12,12);
+  box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.04);
+  -webkit-backface-visibility: hidden;
+}
+flap-top,
+flap-top-flip {
+  top: 0;
+  border-radius: 0.4vw 0.4vw 0 0;
+  transform: translateY(-2px);
+}
+flap-bottom,
+flap-bottom-flip {
+  bottom: 0;
+  border-radius: 0 0 0.4vw 0.4vw;
+  transform: translateY(2px);
+}
+
+flap-top-flip {
+  display: none;
+  transform-origin: 100% 100%;
+  animation: flip-top-down 300ms ease-in;
+}
+flap-bottom-flip {
+  display: none;
+  transform-origin: 100% 0%;
+  animation: flip-bottom-down 150ms ease-out;
+}
+flap-top > n,
+flap-top-flip > n {
+  top: 2px;
+}
+flap-bottom > n,
+flap-bottom-flip > n {
+  bottom: 2px;
+}
+
+@media screen and (max-width: 1200px) {
+  flap-top,
+  flap-top-flip {
+    transform: translateY(-1px);
+  }
+  flap-bottom,
+  flap-bottom-flip {
+    transform: translateY(1px);
+  }
+  flap-top > n,
+  flap-top-flip > n {
+    top: 1px;
+  }
+  flap-bottom > n,
+  flap-bottom-flip > n {
+    bottom: 1px;
+  }
+}
+
+/* Number
+------------------------------------------------*/
+n {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 11vw;
+  font-size: 9vw;
+  font-weight: 200;
+  line-height: 118%;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0)
+}
+
+/* Animations
+------------------------------------------------*/
+@keyframes flip-top-down {
+  0% {
+    transform: translateY(-2px) rotateX(0);
+  }
+  100% {
+    transform: translateY(-2px) rotateX(-90deg);
+    color: black;
+    background-color: black;
+  }
+}
+@keyframes flip-bottom-down {
+  0% {
+    color: white;
+    background-color: rgb(30,30,30);
+    transform: translateY(2px) rotateX(90deg);
+  }
+  100% {
+    transform: translateY(2px) rotateX(0deg);
+  }
+}
+@media screen and (max-width: 1200px) {
+  @keyframes flip-top-down {
+    0% {
+      transform: translateY(-1px) rotateX(0);
+    }
+    100% {
+      transform: translateY(-1px) rotateX(-90deg);
+      color: black;
+      background-color: black;
+    }
+  }
+  @keyframes flip-bottom-down {
+    0% {
+      color: white;
+      background-color: rgb(30,30,30);
+      transform: translateY(1px) rotateX(90deg);
+    }
+    100% {
+      transform: translateY(1px) rotateX(0deg);
+    }
+  }
+}
+
+</style>
+</head>
+<body>
+<script>
+
+(function() {
+'use strict';
+
+var digits = [];
+
+function getEpoch() {
+  return Date.now().toString().slice(0,-3);
+}
+
+function createDigit() {
+  var digit = document.createElement('digit');
+  digit.innerHTML = '\
+  <flap-top>          <n></n>   </flap-top>\
+  <flap-top-flip>     <n></n>   </flap-top-flip>\
+  <flap-bottom>       <n></n>   </flap-bottom>\
+  <flap-bottom-flip>  <n></n>   </flap-bottom-flip>';
+  return digit;
+}
+
+function flipDigitTo(digit, currentVal, updatedVal) {
+  var topFlapNum        = digit.querySelector('flap-top > n'),
+      topFlapFlip       = digit.querySelector('flap-top-flip'),
+      topFlapFlipNum    = topFlapFlip.querySelector('n'),
+      bottomFlapNum     = digit.querySelector('flap-bottom > n'),
+      bottomFlapFlip    = digit.querySelector('flap-bottom-flip'),
+      bottomFlapFlipNum = bottomFlapFlip.querySelector('n');
+
+  topFlapNum.innerHTML = updatedVal;
+  bottomFlapNum.innerHTML = currentVal;
+
+  topFlapFlipNum.innerHTML = currentVal;
+  topFlapFlip.style.display = 'block';
+
+  setTimeout(function() {
+    topFlapFlip.style.display = 'none';
+  }, 300);
+
+  setTimeout(function() {
+    bottomFlapFlipNum.innerHTML = updatedVal;
+    bottomFlapFlip.style.display = 'block';
+  }, 300);
+
+  setTimeout(function() {
+    bottomFlapNum.innerHTML = updatedVal;
+    bottomFlapFlip.style.display = 'none';
+  }, 450);
+
+  digit.setAttribute('current-val', updatedVal);
+}
+
+function updateClock() {
+  var epoch = getEpoch(),
+      staggerDelay,
+      currentVal,
+      updatedVal,
+      i;
+
+  for (i = 0; i < epoch.length; i+=1) {
+    if(i === epoch.length-1) {
+      staggerDelay = 0;
+    } else {
+      staggerDelay = Math.random() * 400;
+    }
+    currentVal = digits[i].getAttribute('current-val');
+    updatedVal = epoch[i];
+    if(currentVal !== updatedVal) {
+      setTimeout(flipDigitTo, staggerDelay, digits[i], currentVal, updatedVal);
+    }
+  }
+}
+
+function setupClock() {
+  var epoch = getEpoch(),
+      staggerDelay,
+      digit,
+      i;
+
+  for (i = 0; i < epoch.length; i+=1) {
+    digit = createDigit();
+    staggerDelay = Math.random() * 400;
+    document.body.appendChild(digit);
+    setTimeout(flipDigitTo, staggerDelay, digit, null, epoch[i]);
+  }
+  digits = document.querySelectorAll('digit');
+}
+
+setupClock();
+setInterval(updateClock, 1000);
+
+}());
+
+</script>
+</body>
+</html>
