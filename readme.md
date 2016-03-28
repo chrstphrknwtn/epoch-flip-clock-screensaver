@@ -5,4 +5,4 @@
 ![Epoch Flip Clock Screenshot](https://raw.githubusercontent.com/chrstphrknwtn/epoch-flip-clock/master/epochFlipClock.png)
 
 ## Install
-Download [`Epock Flip Clock.saver`](https://github.com/chrstphrknwtn/epoch-flip-clock/releases/download/0.0.1/Epoch.Flip.Clock.saver.zip)
+Download [`Epock Flip Clock.saver`](https://github.com/chrstphrknwtn/epoch-flip-clock/releases/download/0.0.2/Epoch.Flip.Clock.saver.zip)
