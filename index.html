@@ -52,13 +52,11 @@ flap-top,
 flap-top-flip {
   top: 0;
   border-radius: 0.4vw 0.4vw 0 0;
-  transform: translateY(-2px);
 }
 flap-bottom,
 flap-bottom-flip {
   bottom: 0;
   border-radius: 0 0 0.4vw 0.4vw;
-  transform: translateY(2px);
 }
 
 flap-top-flip {
@@ -71,16 +69,17 @@ flap-bottom-flip {
   transform-origin: 100% 0%;
   animation: flip-bottom-down 150ms ease-out;
 }
+
 flap-top > n,
 flap-top-flip > n {
-  top: 2px;
+  top: 0;
 }
 flap-bottom > n,
 flap-bottom-flip > n {
-  bottom: 2px;
+  bottom: 0;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (min-width: 800px) {
   flap-top,
   flap-top-flip {
     transform: translateY(-1px);
@@ -96,6 +95,25 @@ flap-bottom-flip > n {
   flap-bottom > n,
   flap-bottom-flip > n {
     bottom: 1px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  flap-top,
+  flap-top-flip {
+    transform: translateY(-2px);
+  }
+  flap-bottom,
+  flap-bottom-flip {
+    transform: translateY(2px);
+  }
+  flap-top > n,
+  flap-top-flip > n {
+    top: 2px;
+  }
+  flap-bottom > n,
+  flap-bottom-flip > n {
+    bottom: 2px;
   }
 }
 
@@ -119,10 +137,10 @@ n {
 ------------------------------------------------*/
 @keyframes flip-top-down {
   0% {
-    transform: translateY(-2px) rotateX(0);
+    transform: rotateX(0);
   }
   100% {
-    transform: translateY(-2px) rotateX(-90deg);
+    transform: rotateX(-90deg);
     color: black;
     background-color: black;
   }
@@ -131,13 +149,14 @@ n {
   0% {
     color: white;
     background-color: rgb(30,30,30);
-    transform: translateY(2px) rotateX(90deg);
+    transform: rotateX(90deg);
   }
   100% {
-    transform: translateY(2px) rotateX(0deg);
+    transform: rotateX(0deg);
   }
 }
-@media screen and (max-width: 1200px) {
+
+@media screen and (min-width: 800px) {
   @keyframes flip-top-down {
     0% {
       transform: translateY(-1px) rotateX(0);
@@ -159,6 +178,32 @@ n {
     }
   }
 }
+
+@media screen and (min-width: 1280px) {
+  @keyframes flip-top-down {
+    0% {
+      transform: translateY(-2px) rotateX(0);
+    }
+    100% {
+      transform: translateY(-2px) rotateX(-90deg);
+      color: black;
+      background-color: black;
+    }
+  }
+  @keyframes flip-bottom-down {
+    0% {
+      color: white;
+      background-color: rgb(30,30,30);
+      transform: translateY(2px) rotateX(90deg);
+    }
+    100% {
+      transform: translateY(2px) rotateX(0deg);
+    }
+  }
+}
+
+
+
 
 </style>
 </head>
