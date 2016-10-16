@@ -1,6 +1,5 @@
 # Epoch Flip Clock
-
-[Epoch](https://en.wikipedia.org/wiki/Unix_time) flip clock Mac OS X screensaver.
+Unix [epoch](https://en.wikipedia.org/wiki/Unix_time) flip clock macOS screensaver
 
 ![Epoch Flip Clock Screenshot](https://raw.githubusercontent.com/chrstphrknwtn/epoch-flip-clock/master/epochFlipClock.png)
 
