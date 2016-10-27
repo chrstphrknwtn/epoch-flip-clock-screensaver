@@ -6,6 +6,11 @@
 - (id)initWithFrame:(NSRect)frame isPreview:(BOOL)isPreview {
     if (!(self = [super initWithFrame:frame isPreview:isPreview])) return nil;
 
+    // Minor hack to display blank non-main screens. Only the main screen will have the clock
+    if (!([NSScreen mainScreen].frame.origin.x == frame.origin.x) && !isPreview) {
+        return self;
+    }
+
     NSURL* indexHTMLDocumentURL = [NSURL URLWithString:[[[NSURL fileURLWithPath:[[NSBundle bundleForClass:self.class].resourcePath stringByAppendingString:@"/index.html"] isDirectory:NO] description] stringByAppendingFormat:@"?screensaver=1%@", self.isPreview ? @"&is_preview=1" : @""]];
 
     WebView* webView = [[WebView alloc] initWithFrame:NSMakeRect(0, 0, frame.size.width, frame.size.height)];
