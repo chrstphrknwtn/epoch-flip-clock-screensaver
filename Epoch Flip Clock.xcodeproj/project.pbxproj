@@ -115,6 +115,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = chrstphrknwtn;
+				TargetAttributes = {
+					3A40066718B53112005F43A6 = {
+						DevelopmentTeam = 4699R6ELY7;
+					};
+				};
 			};
 			buildConfigurationList = 3A40066118B53112005F43A6 /* Build configuration list for PBXProject "Epoch Flip Clock" */;
 			compatibilityVersion = "Xcode 6.3";
@@ -245,7 +250,9 @@
 		3A40068018B53113005F43A6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4699R6ELY7;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_NAME = $TARGET_NAME;
@@ -256,7 +263,9 @@
 		3A40068118B53113005F43A6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 4699R6ELY7;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/Screen Savers";
 				PRODUCT_NAME = $TARGET_NAME;
