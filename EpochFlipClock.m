@@ -30,8 +30,8 @@
 #pragma mark Focus Overrides
 
 - (NSView *)hitTest:(NSPoint)aPoint {return self;}
-- (void)keyDown:(NSEvent *)theEvent {return;}
-- (void)keyUp:(NSEvent *)theEvent {return;}
+//- (void)keyDown:(NSEvent *)theEvent {return;}
+//- (void)keyUp:(NSEvent *)theEvent {return;}
 - (void)mouseDown:(NSEvent *)theEvent {return;}
 - (void)mouseUp:(NSEvent *)theEvent {return;}
 - (void)mouseDragged:(NSEvent *)theEvent {return;}
