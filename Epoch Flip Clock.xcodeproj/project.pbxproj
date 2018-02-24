@@ -71,7 +71,6 @@
 				77996CD61C94B804006B0FF7 /* Info.plist */,
 			);
 			name = Source;
-			path = "That Wednesday";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,7 +101,7 @@
 			dependencies = (
 			);
 			name = "Epoch Flip Clock";
-			productName = "That Wednesday";
+			productName = "Epoch Flip Clock";
 			productReference = 3A40066818B53112005F43A6 /* Epoch Flip Clock.saver */;
 			productType = "com.apple.product-type.bundle";
 		};
