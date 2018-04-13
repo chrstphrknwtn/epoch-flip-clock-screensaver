@@ -5,3 +5,7 @@ Unix [epoch](https://en.wikipedia.org/wiki/Unix_time) flip clock macOS screensav
 
 ## Install
 Download [`Epock Flip Clock.saver`](https://github.com/chrstphrknwtn/epoch-flip-clock/releases/download/0.0.3/Epoch.Flip.Clock.saver.zip)
+
+## Related
+- [Grid Clock Screensaver](https://github.com/chrstphrknwtn/grid-clock-screensaver)
+- [Word Clock Screensaver](https://github.com/chrstphrknwtn/word-clock-screensaver)
